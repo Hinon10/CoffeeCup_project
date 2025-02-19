@@ -141,7 +141,9 @@ def process_message(message):
 
 def webapp_button():
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton(text="Order", callback_data="ordering"))
+    markup.add(types.InlineKeyboardButton(text="Open WebApp", web_app=types.WebAppInfo(
+            url=" https://Hinon10.gitlab.io/CoffeeCup_project/index.html/"))
+    )
     return markup
 
 
