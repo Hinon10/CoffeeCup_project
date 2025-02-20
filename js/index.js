@@ -90,21 +90,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Send the order data to the Telegram bot
   if (window.Telegram && Telegram.WebApp) {
+    alert("This page is opened as a Telegram WebApp.");
     Telegram.WebApp.sendData(JSON.stringify(summaryData)); // Send the data to the bot
     Telegram.WebApp.close(); // Close the web app after sending the data
   }
-
+  else{
+    alert("This page is NOT opened as a Telegram WebApp.");
+  }
   // // Provide confirmation to the user
   // alert("Your order has been sent to the Telegram bot!");
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  if (window.Telegram && Telegram.WebApp) {
-    alert("This page is opened as a Telegram WebApp.");
-  } else {
-    alert("This page is NOT opened as a Telegram WebApp.");
-  }
-});
+
   // /**
   //  * Order Button event listener:
   //  * Compiles the order summary and prompts the user for confirmation.
