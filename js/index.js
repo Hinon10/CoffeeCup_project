@@ -100,9 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.Telegram && Telegram.WebApp) {
-    console.log("This page is opened as a Telegram WebApp.");
+    alert("This page is opened as a Telegram WebApp.");
   } else {
-    console.log("This page is NOT opened as a Telegram WebApp.");
+    alert("This page is NOT opened as a Telegram WebApp.");
   }
 });
   // /**
