@@ -98,6 +98,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // alert("Your order has been sent to the Telegram bot!");
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.Telegram && Telegram.WebApp) {
+    console.log("This page is opened as a Telegram WebApp.");
+  } else {
+    console.log("This page is NOT opened as a Telegram WebApp.");
+  }
+});
   // /**
   //  * Order Button event listener:
   //  * Compiles the order summary and prompts the user for confirmation.
