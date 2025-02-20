@@ -65,48 +65,81 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  /**
-   * Order Button event listener:
-   * Compiles the order summary and prompts the user for confirmation.
-   * On confirmation, you can send the data to a backend, or use Telegram Web App API.
-   */
   orderButton.addEventListener("click", function () {
-    // Build an order summary
-    let orderSummary = [];
-    foodCards.forEach((card) => {
-      const title = card.querySelector(".food-title").textContent.trim();
-      const quantity = parseInt(card.querySelector(".quantity").textContent, 10);
-      if (quantity > 0) {
-        orderSummary.push(`${title}: ${quantity}`);
-      }
-    });
-
-    // If no items have been selected, alert the user.
-    if (orderSummary.length === 0) {
-      alert("Please choose at least one item to order.");
-      return;
-    }
-
-    // Construct the summary text
-    const summaryText =
-      orderSummary.join("\n") +
-      "\n\nTotal: " +
-      totalPriceEl.textContent +
-      "\n\nDo you want to place the order?";
-
-    if (confirm(summaryText)) {
-      // Here you can integrate with a backend API or Telegram Web App.
-      // For example, if using Telegram Web App API:
-      if (window.Telegram && Telegram.WebApp) {
-        // Optionally expand the web app or send data via the Telegram API.
-        Telegram.WebApp.sendData(
-          JSON.stringify({ order: orderSummary, total: totalPriceEl.textContent })
-        );
-      }
-      // Clear or reset order form, then give feedback
-      alert("Order placed successfully!");
+  // Build an order summary
+  let orderSummary = [];
+  foodCards.forEach((card) => {
+    const title = card.querySelector(".food-title").textContent.trim();
+    const quantity = parseInt(card.querySelector(".quantity").textContent, 10);
+    if (quantity > 0) {
+      orderSummary.push(`${title}: ${quantity}`);
     }
   });
+
+  // If no items have been selected, alert the user.
+  if (orderSummary.length === 0) {
+    alert("Please choose at least one item to order.");
+    return;
+  }
+
+  // Construct the summary text
+  const summaryData = {
+    items: orderSummary,
+    total: totalPriceEl.textContent,
+  };
+
+  // Send the order data to the Telegram bot
+  if (window.Telegram && Telegram.WebApp) {
+    Telegram.WebApp.sendData(JSON.stringify(summaryData)); // Send the data to the bot
+    Telegram.WebApp.close(); // Close the web app after sending the data
+  }
+
+  // // Provide confirmation to the user
+  // alert("Your order has been sent to the Telegram bot!");
+});
+
+  // /**
+  //  * Order Button event listener:
+  //  * Compiles the order summary and prompts the user for confirmation.
+  //  * On confirmation, you can send the data to a backend, or use Telegram Web App API.
+  //  */
+  // orderButton.addEventListener("click", function () {
+  //   // Build an order summary
+  //   let orderSummary = [];
+  //   foodCards.forEach((card) => {
+  //     const title = card.querySelector(".food-title").textContent.trim();
+  //     const quantity = parseInt(card.querySelector(".quantity").textContent, 10);
+  //     if (quantity > 0) {
+  //       orderSummary.push(`${title}: ${quantity}`);
+  //     }
+  //   });
+  //
+  //   // If no items have been selected, alert the user.
+  //   if (orderSummary.length === 0) {
+  //     alert("Please choose at least one item to order.");
+  //     return;
+  //   }
+  //
+  //   // Construct the summary text
+  //   const summaryText =
+  //     orderSummary.join("\n") +
+  //     "\n\nTotal: " +
+  //     totalPriceEl.textContent +
+  //     "\n\nDo you want to place the order?";
+  //
+  //   if (confirm(summaryText)) {
+  //     // Here you can integrate with a backend API or Telegram Web App.
+  //     // For example, if using Telegram Web App API:
+  //     if (window.Telegram && Telegram.WebApp) {
+  //       // Optionally expand the web app or send data via the Telegram API.
+  //       Telegram.WebApp.sendData(
+  //         JSON.stringify({ order: orderSummary, total: totalPriceEl.textContent })
+  //       );
+  //     }
+  //     // Clear or reset order form, then give feedback
+  //     alert("Order placed successfully!");
+  //   }
+  // });
 
   /**
    * (Optional) You could persist order information in localStorage.

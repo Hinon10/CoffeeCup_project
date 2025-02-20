@@ -149,8 +149,25 @@ def webapp_button():
 
 @bot.callback_query_handler(func=lambda call: True)
 def confirmation(call):
-    global CHIEF_ID
-    print("ordering")
+    try:
+        # Decode the JSON data sent from the webpage
+        received_data = json.loads(call.data)
+        items = received_data.get("items", [])
+        total = received_data.get("total", "0 som")
+
+        # Format the message
+        order_details = "\n".join(items)
+        response_message = f"New Order Received!\n\nDetails:\n{order_details}\n\nTotal: {total}"
+
+        # Send the order message to the admin (CHIEF ID)
+        bot.send_message(CHIEF_ID, response_message)
+
+        # Send confirmation back to the user in Telegram
+        bot.send_message(call.message.chat.id, "Your order was successfully placed!")
+    except Exception as e:
+        # Handle errors (optional)
+        bot.send_message(call.message.chat.id, "Something went wrong while processing your order.")
+
 
 
 bot.polling(none_stop=True)
