@@ -185,6 +185,8 @@ footer .total-price {
 */
 
 
+
+
 /* General Reset */
 * {
   margin: 0;
@@ -243,7 +245,7 @@ header {
 
 .title {
   text-align: center;
-  margin-left:30px;
+  margin-left:20px;
 }
 
 .title .small-text {
@@ -318,6 +320,7 @@ main {
 }
 
 .quantity-selector button {
+  -webkit-tap-highlight-color: transparent;
   font-family: 'Poppins', sans-serif;
   width: 32px;
   height: 32px;
@@ -325,7 +328,7 @@ main {
   border: none;
   border-radius: 50%;
   font-size: 18px;
-  font-weight: normal;
+  font-weight: lighter;
   color: #838383;
   cursor: pointer;
 }
@@ -364,10 +367,14 @@ footer {
 }
 
 footer .order-button {
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden; /* Hide the pseudo-element when outside */
+  /* existing styles... */
   font-size: 18px;
   cursor: pointer;
   font-weight: 600;
-  padding: 1em 2em; /* Adjust padding as needed */
+  padding: 1em 2em;
   border-radius: 16px;
   color: white;
   border: 1px solid #fdc500;
@@ -376,10 +383,34 @@ footer .order-button {
   display: flex;
   width: 95%;
   align-items: center;
-  justify-content: center; /* Center the text inside the button */
-  position: relative;
+  justify-content: center;
 }
 
+/* Pseudo-element for the glow effect */
+footer .order-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-25deg);
+  animation: glow 2s;
+}
+
+/* Keyframes for left-to-right glow */
+@keyframes glow {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
 footer .order-button:hover {
   background-color: #ffd500;
 }
@@ -422,5 +453,7 @@ footer .order-button:hover {
   --border-radius: 16px;
 
 }
+
+
 
 
