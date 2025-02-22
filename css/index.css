@@ -188,6 +188,7 @@ footer .total-price {
 
 
 
+
 /* General Reset */
 * {
   margin: 0;
@@ -218,7 +219,8 @@ a {
 /* Header Section */
 header {
   position: relative;
-  background-color: #2135a1;
+  background: linear-gradient(45deg, #273DB9, #2135a1);
+  /*   background-color: #2135a1; */
   height: 100px;               /* Adjust header height as needed */
   display: flex;
   align-items: center;
@@ -246,7 +248,7 @@ header {
 
 .title {
   text-align: center;
-  margin-left:100px;
+  margin-left:90px;
 }
 
 .title .small-text {
@@ -397,7 +399,7 @@ footer .order-button::before {
   height: 100%;
   background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
   transform: skewX(-25deg);
-  animation: glow 2s;
+  animation: glow 10s infinite;
 }
 
 /* Keyframes for left-to-right glow */
@@ -405,7 +407,7 @@ footer .order-button::before {
   0% {
     left: -100%;
   }
-  50% {
+  20% {
     left: 100%;
   }
   100% {
@@ -454,6 +456,8 @@ footer .order-button:hover {
   --border-radius: 16px;
 
 }
+
+
 
 
 
