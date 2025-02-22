@@ -1,3 +1,4 @@
+import json
 import os
 import random
 import smtplib
@@ -140,34 +141,60 @@ def process_message(message):
 
 
 def webapp_button():
-    markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton(text="Open WebAppp", web_app=types.WebAppInfo(
+    markup = types.ReplyKeyboardMarkup()
+    markup.add(types.KeyboardButton(text="Order", web_app=types.WebAppInfo(
             url="https://hinon10.github.io/CoffeeCup_project/index.html"))
     )
     return markup
 
-
-@bot.callback_query_handler(func=lambda call: True)
-def confirmation(call):
+@bot.message_handler(content_types=['web_app_data'])
+def confirmation(message):
     try:
         # Decode the JSON data sent from the webpage
-        received_data = json.loads(call.data)
+        received_data = json.loads(message.web_app_data.data)
         items = received_data.get("items", [])
         total = received_data.get("total", "0 som")
 
-        # Format the message
+        # Format the order details
         order_details = "\n".join(items)
-        response_message = f"New Order Received!\n\nDetails:\n{order_details}\n\nTotal: {total}"
+        response_message = f"New Order Received!\n\nUser Surname: {user_states.get(message.chat.id, {}).get('surname', 'Unknown')}\n\nDetails:\n{order_details}\n\nTotal: {total}"
 
-        # Send the order message to the admin (CHIEF ID)
-        bot.send_message(CHIEF_ID, response_message)
+        # Create inline buttons for each product and a confirmation button
+        markup = types.InlineKeyboardMarkup()
+        for item in items:
+            markup.add(types.InlineKeyboardButton(text=f"Out of stock: {item}",
+                                                  callback_data=f"out_of_stock_{item}_{message.chat.id}"))
+        markup.add(types.InlineKeyboardButton(text="All products in stock",
+                                              callback_data=f"all_in_stock_{message.chat.id}"))
+
+        # Send the order message with buttons to the admin (CHIEF ID)
+        bot.send_message(CHIEF_ID, response_message, reply_markup=markup)
 
         # Send confirmation back to the user in Telegram
-        bot.send_message(call.message.chat.id, "Your order was successfully placed!")
+        bot.send_message(message.chat.id, "Your order was successfully placed!")
     except Exception as e:
         # Handle errors (optional)
-        bot.send_message(call.message.chat.id, "Something went wrong while processing your order.")
+        bot.send_message(message.chat.id, "Something went wrong while processing your order.")
 
-
+@bot.callback_query_handler(func=lambda call: True)
+def handle_callback(call):
+    try:
+        received_data = call.data.split("_")
+        # received data example ['out', 'of', 'stock', 'Rice: 1', '5712383956']
+        # Extract user ID from callback data
+        if call.data.startswith("out_of_stock_"):
+            product_name = received_data[3].split(":")[0]
+            print(call.data.split("_"))
+            user_id = received_data[-1].split("_", 2)[-1]
+            bot.send_message(CHIEF_ID, f"{product_name} is marked as out of stock.")
+            bot.send_message(user_id, f"Sorry, but {product_name} is missing in stock. Please update your order using menu button 'Order'.", reply_markup=webapp_button())
+        elif call.data.startswith("all_in_stock_"):
+            received_data = call.data.split("_")
+            user_id = received_data[-1]
+            bot.send_message(CHIEF_ID, "All products are in stock!")
+            bot.send_message(user_id, "Your order is being processed normally.")
+    except Exception as e:
+        # Handle errors silently or log
+        bot.send_message(call.message.chat.id, "Something went wrong while processing your request.")
 
 bot.polling(none_stop=True)
