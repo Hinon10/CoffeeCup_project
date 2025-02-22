@@ -187,6 +187,7 @@ footer .total-price {
 
 
 
+
 /* General Reset */
 * {
   margin: 0;
@@ -245,7 +246,7 @@ header {
 
 .title {
   text-align: center;
-  margin-left:20px;
+  margin-left:100px;
 }
 
 .title .small-text {
@@ -453,6 +454,7 @@ footer .order-button:hover {
   --border-radius: 16px;
 
 }
+
 
 
 
