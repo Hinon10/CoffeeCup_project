@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       if (window.Telegram && Telegram.WebApp) {
-        alert("This page is opened as a Telegram WebApp.");
         Telegram.WebApp.sendData(JSON.stringify(summaryData));
       } else {
         alert("This page is NOT opened as a Telegram WebApp.");

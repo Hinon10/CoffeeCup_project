@@ -14,7 +14,7 @@ load_dotenv()
 TOKEN = os.getenv('TOKEN')
 EMAIL = os.getenv('EMAIL')
 bot = telebot.TeleBot(TOKEN)
-CHIEF_ID = 5712383956
+CHIEF_ID = -4766263342
 
 user_states = {}
 
@@ -27,6 +27,7 @@ def database_exists():
     cur.close()
     conn.close()
 
+database_exists()
 
 def database_user_exists(user_id):
     conn = sqlite3.connect('project.sql')
@@ -64,8 +65,6 @@ def send_verification_email(email, code):
 def start_handler(message):
     user_id = message.chat.id
     user_states[user_id] = {"step": "ask_surname"}
-
-    database_exists()
 
     user = database_user_exists(user_id)
 
