@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ece4a05-ccb4-44d1-ba03-1389d5f37bc4" name="Changes" comment="Refactor: Remove unused DOM manipulation and event logic&#10;&#10;Simplified index.js by commenting lazy js code event handler">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" />
+    <list default="true" id="4ece4a05-ccb4-44d1-ba03-1389d5f37bc4" name="Changes" comment="Add initial HTML structure for Coffee Cup Chiefs menu&#10;&#10;Introduced a complete static HTML file for the Coffee Cup Chiefs menu page. It includes multiple sections for food categories, item details, and stock availability controls. This serves as the foundation for dynamic interaction and styling in future updates.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_try.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_try.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
+    <list id="1ed80cea-2751-495a-88b0-81db81dac4ba" name="Changes by Aziz" comment="" />
     <list id="4d09b32a-5400-4336-837f-3fcc7a2a15f6" name="Changes by Xits" comment="Enhance header styling and adjust animations.&#10;&#10;Replaced solid header background with a gradient for improved visuals. Tweaked animation duration and keyframe timing for smoother effects. Minor CSS adjustments include margin refinement for `.title` and code cleanup." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,10 +18,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -53,6 +52,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "FastAPI.main.executor": "Run",
     "Python.example.executor": "Run",
     "Python.example2.executor": "Run",
     "Python.example3.executor": "Run",
@@ -62,7 +62,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/ENVY/PycharmProjects/CoffeeCupBotProject",
+    "last_opened_file_path": "C:/Users/ENVY/PycharmProjects/CoffeeCupBotProject/main.py",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -81,7 +81,7 @@
       <recent name="C:\Users\ENVY\PycharmProjects\CoffeeCupBotProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.project_try">
+  <component name="RunManager" selected="FastAPI.main">
     <configuration name="example" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CoffeeCupBotProject" />
       <option name="ENV_FILES" value="" />
@@ -184,7 +184,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main" type="Python.FastAPI">
+      <option name="file" value="C:\Users\ENVY\PycharmProjects\CoffeeCupBotProject\main.py" />
+      <module name="CoffeeCupBotProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/Scripts/python.exe" />
+      <option name="SDK_NAME" value="Python 3.12 (CoffeeCupBotProject)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="FastAPI.main" />
       <item itemvalue="Python.example" />
       <item itemvalue="Python.example2" />
       <item itemvalue="Python.example3" />
@@ -219,7 +246,7 @@
       <workItem from="1738769812905" duration="10113000" />
       <workItem from="1739947959802" duration="7682000" />
       <workItem from="1739956523230" duration="375000" />
-      <workItem from="1739994384742" duration="37641000" />
+      <workItem from="1739994384742" duration="52617000" />
     </task>
     <task id="LOCAL-00001" summary="Add CoffeeCupBot with Telegram and web-based ordering system&#10;&#10;Implemented a Telegram bot for user registration and food ordering. Added a web interface for food item selection, order summary, and placing orders. Included assets like images, styles, and JavaScript for a fully functional front-end experience.">
       <option name="closed" value="true" />
@@ -421,7 +448,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740314031710</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Update CHIEF_ID, fix function call, and clean up alerts&#10;&#10;Changed CHIEF_ID to a negative value for compatibility and placed `database_exists()` in the correct initialization sequence. Removed an unnecessary alert message in the Telegram WebApp check to enhance user experience.">
+      <option name="closed" value="true" />
+      <created>1740386039295</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1740386039295</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Add initial HTML structure for Coffee Cup Chiefs menu&#10;&#10;Introduced a complete static HTML file for the Coffee Cup Chiefs menu page. It includes multiple sections for food categories, item details, and stock availability controls. This serves as the foundation for dynamic interaction and styling in future updates.">
+      <option name="closed" value="true" />
+      <created>1740423383884</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1740423383884</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,12 +492,14 @@
     <MESSAGE value="Simplify CSS styling and adjust food card layout.&#10;&#10;Removed unnecessary code comments and unused styles for better maintainability. Updated food card image dimensions and added spacing adjustment to the grid for improved visual balance." />
     <MESSAGE value="Add new food menu items and lazy loading for images&#10;&#10;The update introduces various new menu items under multiple categories, including salads, hot meals, bakery, and garnishes. It also adds lazy loading to all food item images for improved page performance and user experience." />
     <MESSAGE value="Refactor: Remove unused DOM manipulation and event logic&#10;&#10;Simplified index.js by commenting lazy js code event handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: Remove unused DOM manipulation and event logic&#10;&#10;Simplified index.js by commenting lazy js code event handler" />
+    <MESSAGE value="Update CHIEF_ID, fix function call, and clean up alerts&#10;&#10;Changed CHIEF_ID to a negative value for compatibility and placed `database_exists()` in the correct initialization sequence. Removed an unnecessary alert message in the Telegram WebApp check to enhance user experience." />
+    <MESSAGE value="Add initial HTML structure for Coffee Cup Chiefs menu&#10;&#10;Introduced a complete static HTML file for the Coffee Cup Chiefs menu page. It includes multiple sections for food categories, item details, and stock availability controls. This serves as the foundation for dynamic interaction and styling in future updates." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add initial HTML structure for Coffee Cup Chiefs menu&#10;&#10;Introduced a complete static HTML file for the Coffee Cup Chiefs menu page. It includes multiple sections for food categories, item details, and stock availability controls. This serves as the foundation for dynamic interaction and styling in future updates." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CoffeeCupBotProject$example.coverage" NAME="example Coverage Results" MODIFIED="1738729107921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CoffeeCupBotProject$project_try.coverage" NAME="project_try Coverage Results" MODIFIED="1740385421574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CoffeeCupBotProject$main.coverage" NAME="project_try Coverage Results" MODIFIED="1739955150878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CoffeeCupBotProject$main.coverage" NAME="main Coverage Results" MODIFIED="1740423071507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/CoffeeCupBotProject$example3.coverage" NAME="example3 Coverage Results" MODIFIED="1738730225376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CoffeeCupBotProject$example2.coverage" NAME="example2 Coverage Results" MODIFIED="1738729784219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
