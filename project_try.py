@@ -70,7 +70,7 @@ def start_handler(message):
 
     if user:
         markup = webapp_button()
-        bot.send_message(user_id, "Welcome to CoffeeCup!\nYou are already registered and you can start ordering.",
+        bot.send_message(user_id, "Welcome to CoffeeCup!\nYou are already registered and you can start ordering!",
                          reply_markup=markup)
     else:
         bot.send_message(user_id,
