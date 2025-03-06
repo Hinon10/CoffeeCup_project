@@ -185,15 +185,16 @@ def handle_callback(call):
             product_name = received_data[3].split(":")[0]
             print(call.data.split("_"))
             user_id = received_data[-1].split("_", 2)[-1]
-            bot.send_message(CHIEF_ID, f"{product_name} is marked as out of stock.")
-            bot.send_message(user_id, f"Sorry, but {product_name} is missing in stock. Please update your order using menu button 'Order'.", reply_markup=webapp_button())
+            bot.send_message(CHIEF_ID, f"{product_name} is marked as out of stock.") # for chiefs
+            bot.send_message(user_id, f"Sorry, but {product_name} is missing in stock. Please update your order using menu button 'Order'.",
+                             reply_markup=webapp_button()) # for users
         elif call.data.startswith("all_in_stock_"):
             received_data = call.data.split("_")
             user_id = received_data[-1]
-            bot.send_message(CHIEF_ID, "All products are in stock!")
-            bot.send_message(user_id, "Your order is being processed normally.")
+            bot.send_message(CHIEF_ID, "All products are in stock!") # for chiefs
+            bot.send_message(user_id, "Your order has been confirmed and will be ready soon.") # for users
     except Exception as e:
         # Handle errors silently or log
-        bot.send_message(call.message.chat.id, "Something went wrong while processing your request.")
+        bot.send_message(call.message.chat.id, "Something went wrong while processing your request.") #Chief Id стал равен call.message.chat.id
 
 bot.polling(none_stop=True)
