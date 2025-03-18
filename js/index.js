@@ -97,7 +97,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (orderSummary.length === 0) {
-        alert("Please choose at least one item to order.");
+        //EDIT
+        //Removed the alert to allow users interact with button more freely
+        //#TOO BAD. May remove the button when no item is selected in the future
+        //alert("Please choose at least one item to order.");
         return;
       }
 
